@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ControlaArma.cs" />
+    <Compile Include="Assets\Scripts\GeradorZumbis.cs" />
     <Compile Include="Assets\Scripts\ControlaCamera.cs" />
     <Compile Include="Assets\Scripts\Bala.cs" />
     <Compile Include="Assets\Scripts\ControlaInimigo.cs" />

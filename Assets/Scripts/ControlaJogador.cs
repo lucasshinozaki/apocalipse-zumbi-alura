@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+public class ControlaJogador : MonoBehaviour
 {
 
     public float VELOCIDADE = 10;
 
     public Vector3 direcao;
     public LayerMask MascaraDoChao;
+    public GameObject TextoGameOver;
+    public bool Vivo = true;
+
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
     
     void Update() {
 
@@ -21,6 +29,12 @@ public class NewBehaviourScript : MonoBehaviour
             GetComponent<Animator>().SetBool("Movendo", true);
         } else {
             GetComponent<Animator>().SetBool("Movendo", false);
+        }
+
+        if (Vivo == false) {
+            if (Input.GetButtonDown("Fire1")) {
+                SceneManager.LoadScene("game");
+            }
         }
     }
 
