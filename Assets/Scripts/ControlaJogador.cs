@@ -8,6 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     public float VELOCIDADE = 10;
 
     public Vector3 direcao;
+    public LayerMask MascaraDoChao;
     
     void Update() {
 
@@ -27,6 +28,21 @@ public class NewBehaviourScript : MonoBehaviour
         GetComponent<Rigidbody>().MovePosition(
             GetComponent<Rigidbody>().position + 
             (direcao * VELOCIDADE * Time.deltaTime));
+
+        Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
+
+        RaycastHit impacto;
+
+        if (Physics.Raycast(raio, out impacto, 100, MascaraDoChao)) {
+            Vector3 posicaoMiraJogador = impacto.point - transform.position;
+            posicaoMiraJogador.y = transform.position.y;
+
+            Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
+
+            GetComponent<Rigidbody>().MoveRotation(novaRotacao);
+        }
+
     }
 
 }
